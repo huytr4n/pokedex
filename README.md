@@ -12,13 +12,13 @@
 - Build your first Python-Flask image using Docker.
 
     ```docker
-    docker build -t flask-docker .
+    docker build -t pokedex-docker .
     ```
 
 - Flask run.
 
     ```docker
-    docker run -it --rm -e HOSTNAME=0.0.0.0 -p 5000:5000 flask-docker
+    docker run -it --rm -e HOSTNAME=0.0.0.0 -p 5000:5000 -v $(pwd)/src:/code/src pokedex-docker
     ```
 
 Check out your APIs at: http://localhost:5000/

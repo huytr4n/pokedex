@@ -5,13 +5,15 @@ from app import app
 from app.utils import (
     JSON_MIME_TYPE, 
     search_pokedexes_by_name, 
-    get_paginated_list
+    get_paginated_list,
+    crossdomain
 )
 from app.database import init_app
 
 pokedexes = init_app()
 
 @app.route('/api/v1/pokedexes')
+@crossdomain(origin='*')
 def list_pokedexes():
     """
     List all pokedexes with pagination.
