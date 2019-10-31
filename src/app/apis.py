@@ -11,7 +11,7 @@ from app.database import init_app
 
 pokedexes = init_app()
 
-@app.route('/pokedexes')
+@app.route('/api/v1/pokedexes')
 def list_pokedexes():
     """
     List all pokedexes with pagination.
@@ -20,7 +20,7 @@ def list_pokedexes():
 
     query = request.args.get('query', '')
     results = pokedexes
-    url = request.host_url + 'pokedexes'
+    url = request.host_url + 'api/v1/pokedexes'
 
     if query:
         results = search_pokedexes_by_name(pokedexes, query)
@@ -28,7 +28,7 @@ def list_pokedexes():
     pokedexes_paginated = get_paginated_list(
         results, 
         url, 
-        start=request.args.get('start', 1), 
+        offset=request.args.get('offset', 1), 
         limit=request.args.get('limit', 20)
     )
     response = Response(

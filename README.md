@@ -27,16 +27,16 @@ Check out your APIs at: http://localhost:5000/
 
 1. Get list pokedexes
 
-    - URL: localhost:5000/pokedexes?start=1&limit=20
+    - URL: localhost:5000/api/v1/pokedexes?offset=1&limit=20
     - Response:
 
         ```json
         {
-            "start": 1,
+            "offset": 1,
             "limit": 20,
             "count": 809,
             "previous": "",
-            "next": "http://localhost:5000/pokedexes?start=21&limit=20",
+            "next": "http://localhost:5000/api/v1/pokedexes?offset=21&limit=20",
             "results": [
                 {
                     "id": 1,
@@ -215,12 +215,12 @@ Check out your APIs at: http://localhost:5000/
 
 2. Filter list pokedexes by name
 
-    - URL: localhost:5000/pokedexes?query=zu
+    - URL: localhost:5000/api/v1/pokedexes?query=zu
     - Response:
 
         ```json
         {
-            "start": 1,
+            "offset": 1,
             "limit": 20,
             "count": 2,
             "previous": "",
