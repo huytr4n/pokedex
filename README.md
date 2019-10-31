@@ -7,20 +7,19 @@
 
 ## How to run
 
-Install dependencies
+- Required install Docker.
 
-```markdown
-pip install -r requirements.txt
-```
+- Build your first Python-Flask image using Docker.
 
-Config and run Flask server
+    ```docker
+    docker build -t flask-docker .
+    ```
 
-```markdown
-export FLASK_APP=src/run.py
-export FLASK_ENV=development
+- Flask run.
 
-flask run
-```
+    ```docker
+    docker run -it --rm -e HOSTNAME=0.0.0.0 -p 5000:5000 flask-docker
+    ```
 
 Check out your APIs at: http://localhost:5000/
 
