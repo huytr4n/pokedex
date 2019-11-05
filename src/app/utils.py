@@ -6,7 +6,8 @@ JSON_MIME_TYPE = 'application/json'
 
 
 def search_pokedexes_by_name(pokedexes, query):
-    return [pokedex for pokedex in pokedexes if query in pokedex['name']]
+    query = query.lower()
+    return [pokedex for pokedex in pokedexes if query in pokedex['name'].lower()]
 
 
 def json_response(data='', status=200, headers=None):
