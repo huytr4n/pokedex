@@ -18,7 +18,7 @@ def json_response(data='', status=200, headers=None):
     return make_response(data, status, headers)
 
 
-def get_paginated_list(results, url, offset, limit):
+def get_paginated_list(results, url, offset, limit, query=None):
     offset = int(offset)
     limit = int(limit)
     count = len(results)
@@ -47,14 +47,22 @@ def get_paginated_list(results, url, offset, limit):
         obj['previous'] = None
     else:
         offset_copy = max(1, offset - limit)
-        obj['previous'] = url + '?offset=%d&limit=%d' % (offset_copy, limit)
+        
+        if query:
+            obj['previous'] = url + '?offset=%d&limit=%d&query=%s' % (offset_copy, limit, query)
+        else:
+            obj['previous'] = url + '?offset=%d&limit=%d' % (offset_copy, limit)
 
     # make next url
     if offset + limit > count:
         obj['next'] = None
     else:
         offset_copy = offset + limit
-        obj['next'] = url + '?offset=%d&limit=%d' % (offset_copy, limit)
+
+        if query:
+            obj['next'] = url + '?offset=%d&limit=%d&query=%s' % (offset_copy, limit, query)
+        else:
+            obj['next'] = url + '?offset=%d&limit=%d' % (offset_copy, limit)
         
     # finally extract result according to bounds
     obj['results'] = results[(offset - 1):(offset - 1 + limit)]

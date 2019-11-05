@@ -20,7 +20,7 @@ def list_pokedexes():
     Can filter the list by name with args is query.
     """
 
-    query = request.args.get('query', '')
+    query = request.args.get('query', None)
     results = pokedexes
     url = request.host_url + 'api/v1/pokedexes'
 
@@ -31,7 +31,8 @@ def list_pokedexes():
         results, 
         url, 
         offset=request.args.get('offset', 1), 
-        limit=request.args.get('limit', 20)
+        limit=request.args.get('limit', 20),
+        query=query
     )
     response = Response(
         json.dumps(pokedexes_paginated), 
