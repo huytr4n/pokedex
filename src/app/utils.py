@@ -46,12 +46,11 @@ def get_paginated_list(results, url, offset, limit):
         obj['previous'] = None
     else:
         offset_copy = max(1, offset - limit)
-        limit_copy = offset - 1
-        obj['previous'] = url + '?offset=%d&limit=%d' % (offset_copy, limit_copy)
+        obj['previous'] = url + '?offset=%d&limit=%d' % (offset_copy, limit)
 
     # make next url
     if offset + limit > count:
-        obj['next'] = ''
+        obj['next'] = None
     else:
         offset_copy = offset + limit
         obj['next'] = url + '?offset=%d&limit=%d' % (offset_copy, limit)
